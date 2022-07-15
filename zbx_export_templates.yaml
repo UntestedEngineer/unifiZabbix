@@ -720,12 +720,19 @@ zabbix_export:
               type: JSONPATH
               parameters:
                 - '$.[''system-stats''].cpu'
+            -
+              type: JAVASCRIPT
+              parameters:
+                - 'return Math.round(value)'
           master_item:
             key: 'mca-dump-short.sh["-d","{HOST.CONN}", "-u", "{$UNIFI_USER}", "-i", "{$UNIFI_SSH_PRIV_KEY_PATH}", "-t", "AP", "-p", "{$UNIFI_SSHPASS_PASSWORD_PATH}", "-o", "{$UNIFI_CHECK_TIMEOUT}"  ]'
           tags:
             -
               tag: Application
               value: Host
+            -
+              tag: Device
+              value: Status
         -
           uuid: 0a6a8fbeb5914c408e3614700e81d6ff
           name: 'CPU Smooth'
@@ -780,10 +787,18 @@ zabbix_export:
           value_type: FLOAT
           units: '%'
           params: '100* last(//mem_used) / last(//mem_total)'
+          preprocessing:
+            -
+              type: JAVASCRIPT
+              parameters:
+                - 'return Math.round(value)'
           tags:
             -
               tag: Application
               value: Host
+        -
+              tag: Device
+              value: Status
         -
           uuid: f49d35e7e8ec43299f27b8f4b24c042a
           name: 'Total Memory'
@@ -841,6 +856,9 @@ zabbix_export:
               tag: Application
               value: Host
         -
+              tag: Device
+              value: Status
+        -
           uuid: 3c2df9c3ad504a71b43cd3eeaceb4f9d
           name: Satisfaction
           type: DEPENDENT
@@ -884,7 +902,7 @@ zabbix_export:
           type: DEPENDENT
           key: uptime
           delay: '0'
-          units: s
+          units: uptime
           preprocessing:
             -
               type: JSONPATH
@@ -896,6 +914,9 @@ zabbix_export:
             -
               tag: Application
               value: Host
+            -
+              tag: Device
+              value: Status
           triggers:
             -
               uuid: b8c15f7c71934ce89958890a93893a3b
@@ -2435,6 +2456,9 @@ zabbix_export:
               tag: Application
               value: Host
         -
+              tag: Device
+              value: Status
+        -
           uuid: 5ab9f788137f4ab9a8b38127d52fe141
           name: 'CPU Smooth'
           type: CALCULATED
@@ -2539,6 +2563,9 @@ zabbix_export:
               tag: Application
               value: Host
         -
+              tag: Device
+              value: Status
+        -
           uuid: f767db4353aa4a24b373bcbd6a804ec1
           name: 'Total Memory'
           type: DEPENDENT
@@ -2594,6 +2621,9 @@ zabbix_export:
             -
               tag: Application
               value: Host
+        -
+              tag: Device
+              value: Status
         -
           uuid: d42df9b654fc4a2c88ed8e70106dca82
           name: 'Total Rx Bandwidth'
@@ -2652,7 +2682,7 @@ zabbix_export:
           type: DEPENDENT
           key: uptime
           delay: '0'
-          units: s
+          units: uptime
           preprocessing:
             -
               type: JSONPATH
@@ -2664,6 +2694,9 @@ zabbix_export:
             -
               tag: Application
               value: Host
+            -
+              tag: Device
+              value: Status
           triggers:
             -
               uuid: 61975534a4404efa8df675da2609c5f2
@@ -2704,6 +2737,9 @@ zabbix_export:
                 -
                   tag: Application
                   value: Power
+                -
+                  tag: Device
+                  value: Status
           graph_prototypes:
             -
               uuid: d1e7161d8eb141b293eacfe4f5305c09
@@ -3079,6 +3115,9 @@ zabbix_export:
                   tag: Application
                   value: Power
             -
+                  tag: Device
+                  value: Status
+            -
               uuid: 1ee44c1518f441bd9ad5d3c585049926
               name: Temperature
               type: DEPENDENT
@@ -3097,6 +3136,9 @@ zabbix_export:
                 -
                   tag: Application
                   value: Power
+                -
+                  tag: Device
+                  value: Status
           graph_prototypes:
             -
               uuid: b6431556a31941d29b7b592c57342e4d
@@ -3159,12 +3201,19 @@ zabbix_export:
               type: JSONPATH
               parameters:
                 - '$.[''system-stats''].cpu'
+            -
+              type: JAVASCRIPT
+              parameters:
+                - 'return Math.round(value)'
           master_item:
             key: 'mca-dump-short.sh["-d","{HOST.CONN}", "-u", "root", "-i", "{$UNIFI_SSH_PRIV_KEY_PATH}", "-t", "UDMP", "-p", "{$UNIFI_SSHPASS_PASSWORD_PATH}", "-o", "{$UNIFI_CHECK_TIMEOUT}"  ]'
           tags:
             -
               tag: Application
               value: Host
+        -
+              tag: Device
+              value: Status
         -
           uuid: 9204754ee4064cdb86e7363d0712bbd3
           name: 'CPU Smooth'
@@ -3403,10 +3452,18 @@ zabbix_export:
           value_type: FLOAT
           units: '%'
           params: '100* last(//mem_used) / last(//mem_total)'
+          preprocessing:
+            -
+              type: JAVASCRIPT
+              parameters:
+                - 'return Math.round(value)'
           tags:
             -
               tag: Application
               value: Host
+        -
+              tag: Device
+              value: Status
         -
           uuid: 6d11b4ee4bfd4e46876003b76ab98f8b
           name: 'Total Memory'
@@ -3467,6 +3524,9 @@ zabbix_export:
             -
               tag: Application
               value: Host
+        -
+              tag: Device
+              value: Status
         -
           uuid: 974499717ff54afb888c14d7a32c5f1a
           name: 'Port 53 Abuser Request'
@@ -3671,7 +3731,7 @@ zabbix_export:
           type: DEPENDENT
           key: uptime
           delay: '0'
-          units: s
+          units: uptime
           preprocessing:
             -
               type: CHECK_JSON_ERROR
@@ -3687,6 +3747,9 @@ zabbix_export:
             -
               tag: Application
               value: Host
+            -
+              tag: Device
+              value: Status
           triggers:
             -
               uuid: b592d4299ef9482496c585caa936112c
@@ -4199,12 +4262,19 @@ zabbix_export:
               type: JSONPATH
               parameters:
                 - '$.[''system-stats''].cpu'
+            -
+              type: JAVASCRIPT
+              parameters:
+                - 'return Math.round(value)'
           master_item:
             key: 'mca-dump-short.sh["-d","{HOST.CONN}", "-u", "{$UNIFI_USER}", "-i", "{$UNIFI_SSH_PRIV_KEY_PATH}", "-t", "USG", "-p", "{$UNIFI_SSHPASS_PASSWORD_PATH}","-o", "{$UNIFI_CHECK_TIMEOUT}", "-O"]'
           tags:
             -
               tag: Application
               value: Host
+        -
+              tag: Device
+              value: Status
         -
           uuid: 4412da02249643e5a550d06ec615fba8
           name: 'CPU Smooth'
@@ -4433,10 +4503,18 @@ zabbix_export:
           value_type: FLOAT
           units: '%'
           params: '100* last(//mem_used) / last(//mem_total)'
+          preprocessing:
+            -
+              type: JAVASCRIPT
+              parameters:
+                - 'return Math.round(value)'
           tags:
             -
               tag: Application
               value: Host
+        -
+              tag: Device
+              value: Status
         -
           uuid: ea425dc7ad9441e4a98d3dda70d686f0
           name: 'Total Memory'
@@ -4505,6 +4583,9 @@ zabbix_export:
             -
               tag: Application
               value: Host
+        -
+              tag: Device
+              value: Status
         -
           uuid: 8599d352cdda477c80879089f13354d7
           name: 'Temperature CPU'
@@ -4607,7 +4688,7 @@ zabbix_export:
           type: DEPENDENT
           key: uptime
           delay: '0'
-          units: s
+          units: uptime
           preprocessing:
             -
               type: CHECK_JSON_ERROR
@@ -4623,6 +4704,9 @@ zabbix_export:
             -
               tag: Application
               value: Host
+            -
+              tag: Device
+              value: Status
           triggers:
             -
               uuid: 4da4bf931fc3455a9c92a4ff2153518f

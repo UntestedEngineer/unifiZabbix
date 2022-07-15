@@ -1,3 +1,16 @@
+# Notes
+The zbx_export_templates.yaml has a few changes:
+
+* Changes the uptime units to "uptime" which I have found more reliable in human readable uptime values.
+* Added a "Device Status" tag
+* Added a JAVASCRIPT math.round preprocessing operation to make it easier to read CPU and Memory displays
+  
+	          preprocessing:
+            -
+              type: JAVASCRIPT
+              parameters:
+                - 'return Math.round(value)'
+
 # unifiZabbix
 
 This projet contains a collection of Templates to monitor Unifi and other UBNT devices with Zabbix: APs, Switches, Routers (USG and UDMP), AirMax devices, and NVRs
