@@ -1,7 +1,9 @@
 # Notes
+This is a fork of patricegautier/unifiZabbix.
+
 The zbx_export_templates.yaml has a few changes:
 
-* Changes the uptime units to "uptime" which I have found more reliable in human readable uptime values.
+* Changes the uptime units to "uptime" which I have found more reliable in human readable uptime values
 * Added a "Device Status" tag
 * Added a JAVASCRIPT math.round preprocessing operation to make it easier to read CPU and Memory displays
   
